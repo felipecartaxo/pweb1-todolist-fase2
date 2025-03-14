@@ -4,7 +4,7 @@
 <!--<div class="task">-->
 <!--  <mat-card outlined-container-shape="rounded">-->
 <!--    <mat-card-header>-->
-<!--      <mat-card-title>{{ tarefa.titulo }}</mat-card-title>-->
+<!--      <mat-card-title>{{ tarefa.titulo }}<mat-icon [ngStyle]="{'color':'red'}" (click)="onDelete(tarefa)">close</mat-icon></mat-card-title>-->
 <!--       <mat-card-subtitle>{{ tarefa.categoria }}</mat-card-subtitle>-->
 <!--    </mat-card-header>-->
 <!--  </mat-card>-->
@@ -14,6 +14,8 @@
 <div class="task">
   <h3>{{ tarefa.titulo }}
     <!-- TODO: Adicionar ícone de um lápis para editar as informações das tarefas -->
+
+    <!-- Ícone/Botão para excluir -->
     <mat-icon [ngStyle]="{'color':'red'}" (click)="onDelete(tarefa)">close</mat-icon>
   </h3>
   <p>{{ tarefa.categoria }}</p>

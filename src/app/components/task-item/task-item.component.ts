@@ -18,4 +18,8 @@ export class TaskItemComponent {
     // Envia a tarefa pro task.components.ts
     this.onDeleteTask.emit(tarefa);
   }
+
+  onEdit(tarefa: Tarefa) {
+    // TODO: Será implementado em breve
+  }
 }
