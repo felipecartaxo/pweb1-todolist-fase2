@@ -1,0 +1,20 @@
+<!--<p>{{ tarefa.titulo }}</p>-->
+
+<!--TODO: Implementar o card assim que der tempo -->
+<!--<div class="task">-->
+<!--  <mat-card outlined-container-shape="rounded">-->
+<!--    <mat-card-header>-->
+<!--      <mat-card-title>{{ tarefa.titulo }}</mat-card-title>-->
+<!--       <mat-card-subtitle>{{ tarefa.categoria }}</mat-card-subtitle>-->
+<!--    </mat-card-header>-->
+<!--  </mat-card>-->
+<!--</div>-->
+
+<!-- div simulando o card de cada tarefa -->
+<div class="task">
+  <h3>{{ tarefa.titulo }}
+    <!-- TODO: Adicionar ícone de um lápis para editar as informações das tarefas -->
+    <mat-icon [ngStyle]="{'color':'red'}">close</mat-icon>
+  </h3>
+  <p>{{ tarefa.categoria }}</p>
+</div>
