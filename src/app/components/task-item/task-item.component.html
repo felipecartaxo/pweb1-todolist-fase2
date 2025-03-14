@@ -11,9 +11,14 @@
 <!--</div>-->
 
 <!-- div simulando o card de cada tarefa -->
-<div class="task">
+<div class="task"
+     (dblclick)="onToggle(tarefa)"
+     [ngClass]="{reminder: tarefa.concluido}"
+>
+
   <h3>{{ tarefa.titulo }}
     <!-- TODO: Adicionar ícone de um lápis para editar as informações das tarefas -->
+    <!--    <mat-icon [ngStyle]="{'color':'black'}" (click)="onDelete(tarefa)">edit</mat-icon>-->
 
     <!-- Ícone/Botão para excluir -->
     <mat-icon [ngStyle]="{'color':'red'}" (click)="onDelete(tarefa)">close</mat-icon>

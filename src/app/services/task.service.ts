@@ -22,4 +22,9 @@ export class TaskService {
   deleteTask(tarefa: Tarefa): Observable<Tarefa>{
     return this.http.delete<Tarefa>(`${this.URL}/${tarefa.id}`);
   }
+
+  // Atualiza o status da tarefa
+  updateTask(tarefa: Tarefa): Observable<Tarefa> {
+    return this.http.put<Tarefa>(`${this.URL}/${tarefa.id}`, tarefa);
+  }
 }

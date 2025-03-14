@@ -12,6 +12,7 @@ export class TaskItemComponent {
   // A "!" indica que tarefa não precisa ser inicializada e que essa variável terá um valor
   @Input() tarefa!: Tarefa;
   @Output() onDeleteTask = new EventEmitter<Tarefa>();
+  @Output() onToggleConcluido = new EventEmitter<Tarefa>();
 
   // Método que será executado ao clicar no ícone "x"
   onDelete(tarefa: Tarefa) {
@@ -21,5 +22,10 @@ export class TaskItemComponent {
 
   onEdit(tarefa: Tarefa) {
     // TODO: Será implementado em breve
+  }
+
+  // Marca a tarefa como "concluída"
+  onToggle(tarefa: Tarefa) {
+    this.onToggleConcluido.emit(tarefa);
   }
 }
