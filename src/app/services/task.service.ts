@@ -12,10 +12,14 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  // Retorna uma lista contendo todas as tarefas no json server
-  // Note também que utilizamos o Observable por se tratar de uma requisição síncrona
+  // Listagem das tarefas
   getTasks() : Observable<Tarefa[]> {
     // Faz um GET para o json server
     return this.http.get<Tarefa[]>(this.URL);
+  }
+
+  // Remove uma tarefa
+  deleteTask(tarefa: Tarefa): Observable<Tarefa>{
+    return this.http.delete<Tarefa>(`${this.URL}/${tarefa.id}`);
   }
 }

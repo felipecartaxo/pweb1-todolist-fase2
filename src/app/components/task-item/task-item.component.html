@@ -14,7 +14,7 @@
 <div class="task">
   <h3>{{ tarefa.titulo }}
     <!-- TODO: Adicionar ícone de um lápis para editar as informações das tarefas -->
-    <mat-icon [ngStyle]="{'color':'red'}">close</mat-icon>
+    <mat-icon [ngStyle]="{'color':'red'}" (click)="onDelete(tarefa)">close</mat-icon>
   </h3>
   <p>{{ tarefa.categoria }}</p>
 </div>
