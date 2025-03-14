@@ -10,13 +10,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { AddTaskComponent } from './components/add-task/add-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TasksComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
