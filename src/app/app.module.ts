@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { FormsModule } from "@angular/forms";
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from "@angular/forms";
     HeaderComponent,
     TasksComponent,
     TaskItemComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    ButtonComponent
   ],
     imports: [
         BrowserModule,

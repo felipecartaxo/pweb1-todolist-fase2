@@ -13,6 +13,8 @@ export class AddTaskComponent {
   categoria: string = "";
   // Ao criar uma nova tarefa, a mesma deve iniciar como "não concluída"
   concluido: boolean = false;
+  // Visualização do botão para adicionar uma nova tarefa
+  mostrarAddTarefa: boolean = false;
 
   onSubmit() {
     // console.log(this.titulo, this.categoria);
@@ -36,5 +38,9 @@ export class AddTaskComponent {
     this.categoria = "";
     this.concluido = false;
 
+  }
+
+  alteraVisualizacao(valor: boolean) {
+    this.mostrarAddTarefa = valor;
   }
 }
