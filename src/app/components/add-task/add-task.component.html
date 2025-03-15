@@ -1,23 +1,28 @@
-<form>
+<form (ngSubmit)="onSubmit()"> <!-- Método que será chamado ao enviar o formulário -->
   <div>
-    <label for="text">Tarefa:</label>
+    <label for="text">Título:</label>
     <input type="text"
            name="text"
            class="form-control"
            placeholder="Adicionar tarefa"
            id="text"
+           [(ngModel)]="titulo"
     >
   </div>
 
   <div class="mb-4">
     <label for="categoria">Categoria:</label>
-    <select name="categoria" id="categoria" class="form-select">
-      <option value="">Selectione uma categoria</option>
-      <option value="">Casa</option>
-      <option value="">Trabalho</option>
-      <option value="">Faculdade</option>
-      <option value="">Academia</option>
-      <option value="">Lazer</option>
+    <select name="categoria"
+            id="categoria"
+            class="form-select"
+            [(ngModel)]="categoria"
+    >
+      <option value="">Selecione uma categoria</option>
+      <option value="Casa">Casa</option>
+      <option value="Trabalho">Trabalho</option>
+      <option value="Faculdade">Faculdade</option>
+      <option value="Academia">Academia</option>
+      <option value="Lazer">Lazer</option>
 
     </select>
   </div>

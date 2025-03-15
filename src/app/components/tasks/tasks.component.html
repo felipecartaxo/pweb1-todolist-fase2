@@ -6,7 +6,8 @@
 <!--  }-->
 <!--</ul>-->
 
-<app-add-task></app-add-task>
+<!-- Recebe a tarefa que está vindo do event de onAddTask -->
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
 @for (tarefa of tarefas; track tarefa.id) {
   <app-task-item [tarefa]="tarefa"
                  (onDeleteTask)="deleteTask($event)"

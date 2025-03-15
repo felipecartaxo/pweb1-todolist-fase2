@@ -11,6 +11,7 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { AddTaskComponent } from './components/add-task/add-task.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,12 +21,13 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     TaskItemComponent,
     AddTaskComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatIconModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatIconModule,
+        FormsModule
+    ],
   providers: [
     provideAnimationsAsync(),
     provideHttpClient()

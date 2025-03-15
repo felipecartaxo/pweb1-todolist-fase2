@@ -27,13 +27,20 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  deleteTask(tarefa: Tarefa){
-    this.taskService.deleteTask(tarefa).subscribe(() =>
-      (this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id)));
+  addTask(tarefa: Tarefa) {
+    this.taskService.addTask(tarefa).subscribe((tarefa) => {
+      // Lógica para listar a tarefa logo após criá-la
+      this.tarefas.push(tarefa);
+    });
   }
 
   toggleConcluido(tarefa: Tarefa) {
     tarefa.concluido = !tarefa.concluido;
     this.taskService.updateTask(tarefa).subscribe();
+  }
+
+  deleteTask(tarefa: Tarefa){
+    this.taskService.deleteTask(tarefa).subscribe(() =>
+      (this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id)));
   }
 }
