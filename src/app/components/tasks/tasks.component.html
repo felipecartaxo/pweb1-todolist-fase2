@@ -6,15 +6,36 @@
 <!--  }-->
 <!--</ul>-->
 
-<input type="text" [(ngModel)]="filtro" (input)="buscarTarefas()" placeholder="Buscar tarefas..." class="form-control">
+
+
+<div class="filter-container">
+  <!-- Campo de busca por título -->
+  <input
+    type="text"
+    [(ngModel)]="filtro"
+    (input)="buscarTarefas()"
+    placeholder="Buscar por título..."
+    class="form-control search-input"
+  >
+
+  <!-- Dropdown de categorias -->
+  <select [(ngModel)]="filtroCategoria" (change)="buscarTarefas()" class="form-control category-dropdown">
+    <option value="">Filtrar por categoria</option>
+    <option value="Casa">Casa</option>
+    <option value="Trabalho">Trabalho</option>
+    <option value="Faculdade">Faculdade</option>
+    <option value="Academia">Academia</option>
+    <option value="Lazer">Lazer</option>
+  </select>
+</div>
+
 <!-- Recebe a tarefa que está vindo do event de onAddTask -->
 <app-add-task (onAddTask)="addTask($event)"></app-add-task>
+
+<!-- Listagem das tarefas -->
 @for (tarefa of tarefas; track tarefa.id) {
   <app-task-item [tarefa]="tarefa"
                  (onDeleteTask)="deleteTask($event)"
-                 (onToggleConcluido)="toggleConcluido($event)"
-  ></app-task-item>
+                 (onToggleConcluido)="toggleConcluido($event)">
+  </app-task-item>
 }
-
-
-

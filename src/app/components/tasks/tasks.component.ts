@@ -12,8 +12,10 @@ export class TasksComponent implements OnInit {
 
   // Variável que vai armazenar a lista de tarefas
   tarefas: Tarefa[] = [];
-  // Variável que vai armazenar o termo de busca
+   // Filtro de título
   filtro: string = '';
+  // Filtro de categoria
+  filtroCategoria: string = '';
 
   constructor(private taskService: TaskService) {}
 
@@ -54,7 +56,7 @@ export class TasksComponent implements OnInit {
     }
   }
 
-    buscarTarefas() {
+   /* buscarTarefas() {
       if (this.filtro.trim()) {
         this.taskService.pesquisarPorFiltro(this.filtro).subscribe((dados: Tarefa[]) => {
           this.tarefas = dados;
@@ -62,9 +64,15 @@ export class TasksComponent implements OnInit {
       } else {
         this.carregarTarefas(); // Recarrega todas as tarefas se o filtro estiver vazio
       }
+    } */
+    buscarTarefas() {
+      this.taskService.pesquisarPorFiltro(this.filtro, this.filtroCategoria).subscribe((dados: Tarefa[]) => {
+        this.tarefas = dados;
+      });
     }
 
 }
+
 
 
 
