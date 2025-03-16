@@ -1,6 +1,17 @@
+
+  <!--
 <div class="container">
   <app-header></app-header>
 
-  <!-- Componente responsável pela listagem das tarefas -->
   <app-tasks></app-tasks>
 </div>
+-->
+
+<!-- Exibir a barra de menu somente se o usuário estiver logado -->
+<app-menu *ngIf="usuarioLogado"></app-menu>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'pweb1-todolist-fase2';
+  constructor(private usuarioService: UsuarioService) {}
+
+  get usuarioLogado(): boolean {
+    return this.usuarioService.getUsuarioLogado() !== null;
+  }
 }
+
+

@@ -1,0 +1,34 @@
+.menu-bar {
+  background-color: #8e8ccd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+
+.menu-left h3 {
+  margin: 0;
+  padding-left: 15px;
+}
+
+.search-input {
+  padding: 5px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+}
+
+.logout-btn {
+  background-color: white;
+  color: #8e8ccd;
+  border: none;
+  padding: 7px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: #ddd;
+}
+

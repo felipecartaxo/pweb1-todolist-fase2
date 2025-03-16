@@ -12,35 +12,58 @@ export class TasksComponent implements OnInit {
 
   // Variável que vai armazenar a lista de tarefas
   tarefas: Tarefa[] = [];
+  // Variável que vai armazenar o termo de busca
+  filtro: string = '';
 
   constructor(private taskService: TaskService) {}
 
   // Após o construtor, o ngOnInit será chamado e irá listar todas as tarefas
   ngOnInit() {
+    this.carregarTarefas();
+  }
 
-    this.taskService.getTasks().subscribe((dado) => {
+  carregarTarefas() {
+    this.taskService.getTasks().subscribe((dados: Tarefa[]) => {
       // Armazena a lista de tarefas que foi retornada pelo serviço getTasks
-      this.tarefas = dado;
+      this.tarefas = dados;
 
       // Apenas para fins de teste
-      console.log(dado);
+      console.log(dados);
     });
   }
 
   addTask(tarefa: Tarefa) {
-    this.taskService.addTask(tarefa).subscribe((tarefa) => {
+    this.taskService.addTask(tarefa).subscribe(() => {
       // Lógica para listar a tarefa logo após criá-la
-      this.tarefas.push(tarefa);
+      this.carregarTarefas();
     });
   }
 
   toggleConcluido(tarefa: Tarefa) {
     tarefa.concluido = !tarefa.concluido;
-    this.taskService.updateTask(tarefa).subscribe();
+    this.taskService.updateTask(tarefa).subscribe(() => {
+      this.carregarTarefas();
+    });
   }
 
-  deleteTask(tarefa: Tarefa){
-    this.taskService.deleteTask(tarefa).subscribe(() =>
-      (this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id)));
+  deleteTask(tarefa: Tarefa) {
+    if (tarefa.id) {
+      this.taskService.deleteTask(tarefa.id).subscribe(() => {
+        this.carregarTarefas();
+      });
+    }
+  }
+
+  buscarTarefas() {
+    if (this.filtro.trim()) {
+      this.taskService.pesquisarPorFiltro(this.filtro).subscribe((dados: Tarefa[]) => {
+        this.tarefas = dados;
+      });
+    } else {
+      this.carregarTarefas();
+    }
   }
 }
+
+
+

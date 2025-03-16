@@ -1,7 +1,10 @@
 export interface Tarefa {
 
-  id?: number, // O id pode ser nulo, pois será criado automaticamente
+  id?: string, // O id pode ser nulo, pois será criado automaticamente
   titulo: string,
   categoria: string,
-  concluido: boolean
+  concluido: boolean,
+  usuarioID: string;
 }
+
+

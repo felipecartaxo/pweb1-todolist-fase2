@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Tarefa} from '../../model/Tarefa';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Tarefa } from '../../model/Tarefa';
 
 @Component({
   selector: 'app-task-item',
@@ -29,3 +29,5 @@ export class TaskItemComponent {
     this.onToggleConcluido.emit(tarefa);
   }
 }
+
+
