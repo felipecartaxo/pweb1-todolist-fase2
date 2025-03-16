@@ -59,22 +59,22 @@ export class TaskService {
     });
   }
 
-  //Filtra uma tarefa
+  // Filtra uma tarefa por título e categoria (case insensitive)
   pesquisarPorFiltro(valor: string): Observable<Tarefa[]> {
+    valor = valor.toLowerCase(); // Converte a busca para minúsculas
+
     return runInInjectionContext(this.injetor, () => {
       return this.firestore.collection<Tarefa>(this.NOME_COLECAO, ref =>
-        ref.where('titulo', '>=', valor).where('titulo', '<=', valor + '\uf8ff')
+        ref.where('usuarioID', '==', this.usuarioService.getUsuarioLogado()?.id) // Filtra por usuário logado
       ).valueChanges({ idField: 'id' }).pipe(
-        switchMap(tarefasTitulo =>
-          this.firestore.collection<Tarefa>(this.NOME_COLECAO, ref =>
-            ref.where('categoria', '>=', valor).where('categoria', '<=', valor + '\uf8ff')
-          ).valueChanges({ idField: 'id' }).pipe(
-            map(tarefasCategoria => [...tarefasTitulo, ...tarefasCategoria])
-          )
-        )
+        map(tarefas => tarefas.filter(tarefa =>
+          tarefa.titulo.toLowerCase().includes(valor) || // Ignora maiúsculas e minúsculas
+          tarefa.categoria.toLowerCase().includes(valor)
+        ))
       );
     });
   }
+
 }
 
 

@@ -54,15 +54,16 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  buscarTarefas() {
-    if (this.filtro.trim()) {
-      this.taskService.pesquisarPorFiltro(this.filtro).subscribe((dados: Tarefa[]) => {
-        this.tarefas = dados;
-      });
-    } else {
-      this.carregarTarefas();
+    buscarTarefas() {
+      if (this.filtro.trim()) {
+        this.taskService.pesquisarPorFiltro(this.filtro).subscribe((dados: Tarefa[]) => {
+          this.tarefas = dados;
+        });
+      } else {
+        this.carregarTarefas(); // Recarrega todas as tarefas se o filtro estiver vazio
+      }
     }
-  }
+
 }
 
 
