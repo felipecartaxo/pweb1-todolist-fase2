@@ -1,11 +1,13 @@
 <div class="login-container">
-  <h2>Login</h2>
-  <input type="text" [(ngModel)]="nome" placeholder="Nome" class="form-control">
-  <input type="password" [(ngModel)]="senha" placeholder="Senha" class="form-control">
+  <div class="login-card">
+    <h2>Fazer login</h2>
+    <input type="text" [(ngModel)]="nome" placeholder="Nome" class="form-control">
+    <input type="password" [(ngModel)]="senha" placeholder="Senha" class="form-control">
 
-  <button (click)="onLogin()">Entrar</button>
+    <button (click)="onLogin()">Entrar</button>
 
-  <p *ngIf="mensagemErro" style="color: red;">{{ mensagemErro }}</p>
+    <p *ngIf="mensagemErro" class="error-message">{{ mensagemErro }}</p>
 
-  <p>Não possui uma conta? <a routerLink="/cadastro">Crie uma conta</a></p>
+    <p>Não possui uma conta? <a routerLink="/cadastro">Crie uma conta</a></p>
+  </div>
 </div>
