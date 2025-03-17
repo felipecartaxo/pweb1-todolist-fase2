@@ -32,7 +32,7 @@ app-root, app-login {
   justify-content: center;
   align-items: center;
   height: 85vh;
-  background: linear-gradient(135deg, #8e8ccc, #6c6ab7);
+  background: linear-gradient(#8e8ccc, #6c6ab7);
   border-radius: 15px;
   max-width: 90%;
   margin: auto;
