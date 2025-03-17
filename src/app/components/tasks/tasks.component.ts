@@ -11,7 +11,12 @@ import { Tarefa } from '../../model/Tarefa';
 export class TasksComponent implements OnInit {
 
   // Variável que vai armazenar a lista de tarefas
+
   tarefas: Tarefa[] = [];
+  // Filtro de título
+  filtro: string = '';
+  // Filtro de categoria
+  filtroCategoria: string = '';
 
   constructor(private taskService: TaskService) {}
 
@@ -45,13 +50,13 @@ export class TasksComponent implements OnInit {
   }
 
   // TODO: Comentei apenas para testar a conexão com o Spring
-  // // Variável que vai armazenar a lista de tarefas
+  // // // Variável que vai armazenar a lista de tarefas
   // tarefas: Tarefa[] = [];
   //  // Filtro de título
   // filtro: string = '';
   // // Filtro de categoria
   // filtroCategoria: string = '';
-  //
+
   // constructor(private taskService: TaskService) {}
   //
   // // Após o construtor, o ngOnInit será chamado e irá listar todas as tarefas
@@ -91,19 +96,20 @@ export class TasksComponent implements OnInit {
   //   }
   // }
   //
-  //  /* buscarTarefas() {
-  //     if (this.filtro.trim()) {
-  //       this.taskService.pesquisarPorFiltro(this.filtro).subscribe((dados: Tarefa[]) => {
-  //         this.tarefas = dados;
-  //       });
-  //     } else {
-  //       this.carregarTarefas(); // Recarrega todas as tarefas se o filtro estiver vazio
-  //     }
-  //   } */
-  //
-  //   buscarTarefas() {
-  //     this.taskService.pesquisarPorFiltro(this.filtro, this.filtroCategoria).subscribe((dados: Tarefa[]) => {
-  //       this.tarefas = dados;
-  //     });
-  //   }
+
+  /* buscarTarefas() {
+      if (this.filtro.trim()) {
+        this.taskService.pesquisarPorFiltro(this.filtro).subscribe((dados: Tarefa[]) => {
+          this.tarefas = dados;
+        });
+      } else {
+        this.carregarTarefas(); // Recarrega todas as tarefas se o filtro estiver vazio
+      }
+    } */
+
+    buscarTarefas() {
+      this.taskService.pesquisarPorFiltro(this.filtro, this.filtroCategoria).subscribe((dados: Tarefa[]) => {
+        this.tarefas = dados;
+      });
+    }
 }

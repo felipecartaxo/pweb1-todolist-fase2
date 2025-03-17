@@ -9,26 +9,26 @@
 <!-- TODO: Para corrigir e reimplementar na aplicação -->
 
 <!-- TODO: Comentei apenas para testar a conexão com o Spring-->
-<!--<div class="filter-container">-->
-<!--  &lt;!&ndash; Campo de busca por título &ndash;&gt;-->
-<!--  <input-->
-<!--    type="text"-->
-<!--    [(ngModel)]="filtro"-->
-<!--    (input)="buscarTarefas()"-->
-<!--    placeholder="Buscar por título..."-->
-<!--    class="form-control search-input"-->
-<!--  >-->
+<div class="filter-container">
+  <!-- Campo de busca por título -->
+  <input
+    type="text"
+    [(ngModel)]="filtro"
+    (input)="buscarTarefas()"
+    placeholder="Buscar por título..."
+    class="form-control search-input"
+  >
 
-<!--  &lt;!&ndash; Dropdown de categorias &ndash;&gt;-->
-<!--  <select [(ngModel)]="filtroCategoria" (change)="buscarTarefas()" class="form-control category-dropdown">-->
-<!--    <option value="">Filtrar por categoria</option>-->
-<!--    <option value="Casa">Casa</option>-->
-<!--    <option value="Trabalho">Trabalho</option>-->
-<!--    <option value="Faculdade">Faculdade</option>-->
-<!--    <option value="Academia">Academia</option>-->
-<!--    <option value="Lazer">Lazer</option>-->
-<!--  </select>-->
-<!--</div>-->
+  <!-- Dropdown de categorias -->
+  <select [(ngModel)]="filtroCategoria" (change)="buscarTarefas()" class="form-control category-dropdown">
+    <option value="">Filtrar por categoria</option>
+    <option value="Casa">Casa</option>
+    <option value="Trabalho">Trabalho</option>
+    <option value="Faculdade">Faculdade</option>
+    <option value="Academia">Academia</option>
+    <option value="Lazer">Lazer</option>
+  </select>
+</div>
 
 <!-- Recebe a tarefa que está vindo do event de onAddTask -->
 <app-add-task (onAddTask)="addTask($event)"></app-add-task>

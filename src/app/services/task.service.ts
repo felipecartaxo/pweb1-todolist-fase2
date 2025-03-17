@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { from, Observable, map, switchMap } from 'rxjs';
 import { Tarefa } from '../model/Tarefa';
 import { UsuarioService } from './usuario.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,23 @@ export class TaskService {
   // Remove uma tarefa
   deleteTask(tarefa: Tarefa): Observable<Tarefa>{
     return this.http.delete<Tarefa>(`${this.URL}/${tarefa.id}`);
+  }
+
+  // Filtra tarefas por título e categoria
+  pesquisarPorFiltro(titulo: string, categoria: string): Observable<Tarefa[]> {
+    // Configura os parâmetros da requisição
+    let params = new HttpParams();
+
+    if (titulo) {
+      params = params.append('titulo', titulo);
+    }
+
+    if (categoria) {
+      params = params.append('categoria', categoria);
+    }
+
+    // Faz a requisição GET com os parâmetros
+    return this.http.get<Tarefa[]>(`${this.URL}/filtrar`, { params });
   }
 }
 
