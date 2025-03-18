@@ -22,4 +22,7 @@
     <mat-icon [ngStyle]="{'color':'red'}" (click)="onDelete(tarefa)">close</mat-icon>
   </h3>
   <p>{{ tarefa.categoria }}</p>
+  <!-- <p>{{ tarefa.descricao }}</p>-->
+  <p *ngIf="tarefa.descricao" class="description">{{ tarefa.descricao }}</p>
+  <p *ngIf="!tarefa.descricao" class="no-description">Nenhuma descrição fornecida.</p>
 </div>

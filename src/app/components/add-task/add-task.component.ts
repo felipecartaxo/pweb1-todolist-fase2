@@ -19,6 +19,7 @@ export class AddTaskComponent {
   constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
     this.tarefaForm = this.fb.group({
       titulo: ['', Validators.required],
+      descricao: [''],
       categoria: ['', Validators.required]
     });
   }
@@ -37,6 +38,7 @@ export class AddTaskComponent {
     const novaTarefa: Tarefa = {
       titulo: this.tarefaForm.value.titulo,
       categoria: this.tarefaForm.value.categoria,
+      descricao: this.tarefaForm.value.descricao || null,
       // Ao criar uma nova tarefa, a mesma deve iniciar como "não concluída"
       concluido: false,
       usuarioID: usuario.id!

@@ -24,6 +24,7 @@ export class TasksComponent implements OnInit {
     this.carregarTarefas();
   }
 
+  //busca todas as tarefas do serviço TaskService
   carregarTarefas() {
     this.taskService.getTasks().subscribe((dados: Tarefa[]) => {
       // Armazena a lista de tarefas que foi retornada pelo serviço getTasks
@@ -34,6 +35,7 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  //adiciona uma nova tarefa e recarrega a lista
   addTask(tarefa: Tarefa) {
     this.taskService.addTask(tarefa).subscribe(() => {
       // Lógica para listar a tarefa logo após criá-la
@@ -41,6 +43,7 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  //alterna o status de conclusão de uma tarefa e atualiza a lista
   toggleConcluido(tarefa: Tarefa) {
     tarefa.concluido = !tarefa.concluido;
     this.taskService.updateTask(tarefa).subscribe(() => {
