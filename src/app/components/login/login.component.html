@@ -1,13 +1,34 @@
+<!-- <p>Dados do formulário: {{ loginForm.value | json }}</p> -->
+
 <div class="login-container">
   <div class="login-card">
     <h2>Fazer login</h2>
-    <input type="text" [(ngModel)]="nome" placeholder="Nome" class="form-control">
-    <input type="password" [(ngModel)]="senha" placeholder="Senha" class="form-control">
 
-    <button (click)="onLogin()">Entrar</button>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input
+        type="text"
+        formControlName="nome"
+        placeholder="Nome"
+        class="form-control"
+      >
+      <p *ngIf="loginForm.controls['nome'].invalid && loginForm.controls['nome'].touched" class="error-message">
+        Nome é obrigatório.
+      </p>
+
+      <input
+        type="password"
+        formControlName="senha"
+        placeholder="Senha"
+        class="form-control"
+      >
+      <p *ngIf="loginForm.controls['senha'].invalid && loginForm.controls['senha'].touched" class="error-message">
+        Senha é obrigatória.
+      </p>
+
+      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+    </form>
 
     <p *ngIf="mensagemErro" class="error-message">{{ mensagemErro }}</p>
-
     <p>Não possui uma conta? <a routerLink="/cadastro">Crie uma conta</a></p>
   </div>
-</div> 
+</div>

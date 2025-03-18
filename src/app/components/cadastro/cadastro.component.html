@@ -1,10 +1,33 @@
+<!-- <p>Dados do formulário: {{ cadastroForm.value | json }}</p> -->
+
 <div class="cadastro-container">
   <div class="cadastro-card">
     <h2>Cadastro</h2>
-    <input type="text" [(ngModel)]="nome" placeholder="Nome" class="form-control">
-    <input type="password" [(ngModel)]="senha" placeholder="Senha" class="form-control">
 
-    <button (click)="onCadastro()">Cadastrar</button>
+    <form [formGroup]="cadastroForm" (ngSubmit)="onCadastro()">
+      <input
+        type="text"
+        formControlName="nome"
+        placeholder="Nome"
+        class="form-control"
+      >
+      <p *ngIf="cadastroForm.controls['nome'].invalid && cadastroForm.controls['nome'].touched" class="error-message">
+        Nome é obrigatório e deve ter pelo menos 3 caracteres.
+      </p>
+
+      <input
+        type="password"
+        formControlName="senha"
+        placeholder="Senha"
+        class="form-control"
+      >
+      <p *ngIf="cadastroForm.controls['senha'].invalid && cadastroForm.controls['senha'].touched" class="error-message">
+        A senha deve ter pelo menos 6 caracteres.
+      </p>
+
+      <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
+    </form>
+
     <p>Já possui uma conta? <a routerLink="/login">Faça login</a></p>
   </div>
 </div>

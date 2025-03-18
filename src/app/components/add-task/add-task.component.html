@@ -5,35 +5,30 @@
   <app-button text="Adicionar tarefa" color="green" (btnClick)="alteraVisualizacao(true)"></app-button>
 }
 
-<form (ngSubmit)="onSubmit()" class="add-form" *ngIf="mostrarAddTarefa"> <!-- Método que será chamado ao enviar o formulário -->
+<!-- Formulário de cadastro de tarefa -->
+<form [formGroup]="tarefaForm" (ngSubmit)="onSubmit()" class="add-form" *ngIf="mostrarAddTarefa">
   <div>
-    <label for="text">Título:</label>
+    <label for="titulo">Título:</label>
     <input type="text"
-           name="text"
+           id="titulo"
            class="form-control"
            placeholder="Adicionar tarefa"
-           id="text"
-           [(ngModel)]="titulo"
-    >
+           formControlName="titulo">
   </div>
 
   <div class="mb-4">
     <label for="categoria">Categoria:</label>
-    <select name="categoria"
-            id="categoria"
+    <select id="categoria"
             class="form-select"
-            [(ngModel)]="categoria"
-    >
-      <option value="">Selecione uma categoria</option>
+            formControlName="categoria">
+      <option value="" disabled selected>Selecione uma categoria</option>
       <option value="Casa">Casa</option>
       <option value="Trabalho">Trabalho</option>
       <option value="Faculdade">Faculdade</option>
       <option value="Academia">Academia</option>
       <option value="Lazer">Lazer</option>
-
     </select>
   </div>
 
-  <input type="submit" value="Salvar Tarefa" class="btn btn-block mb-4">
-
+  <button type="submit" class="btn-salvar" [disabled]="tarefaForm.invalid">Salvar Tarefa</button>
 </form>
