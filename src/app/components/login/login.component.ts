@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 
@@ -9,21 +10,39 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  nome: string = '';
-  senha: string = '';
+  //nome: string = '';
+  //senha: string = '';
+  loginForm: FormGroup;
   mensagemErro: string = '';
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      nome: ['', Validators.required],
+      senha: ['', Validators.required]
+    });
+  }
 
   onLogin() {
-    this.usuarioService.login(this.nome, this.senha).subscribe(usuario => {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const { nome, senha } = this.loginForm.value;
+
+    this.usuarioService.login(nome, senha).subscribe(usuario => {
       if (usuario) {
         console.log("Usuário logado com sucesso:", usuario);
-        this.router.navigate(['/tasks']);  // Redireciona para as tarefas
+        this.router.navigate(['/tasks']); // Redireciona para as tarefas
       } else {
         this.mensagemErro = 'Usuário ou senha incorretos';
       }
     });
   }
 }
+
+
 

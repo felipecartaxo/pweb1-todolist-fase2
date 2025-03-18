@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../model/Usuario';
 import { Router } from '@angular/router';
@@ -10,14 +11,32 @@ import { Router } from '@angular/router';
   styleUrl: './cadastro.component.css'
 })
 export class CadastroComponent {
-  nome: string = '';
-  senha: string = '';
+  //nome: string = '';
+  //senha: string = '';
+  cadastroForm: FormGroup;
   mensagemErro: string = '';
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {
+    this.cadastroForm = this.fb.group({
+      //Validação nome mínimo de 3 caracteres e senha mínima de 6
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   onCadastro() {
-    const usuario: Usuario = { nome: this.nome, senha: this.senha };
+    if (this.cadastroForm.invalid) {
+      return;
+    }
+
+    const usuario: Usuario = {
+      nome: this.cadastroForm.value.nome,
+      senha: this.cadastroForm.value.senha
+    };
 
     this.usuarioService.cadastrar(usuario).subscribe(
       () => {
@@ -31,4 +50,6 @@ export class CadastroComponent {
     );
   }
 }
+
+
 

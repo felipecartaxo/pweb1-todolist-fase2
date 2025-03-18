@@ -10,7 +10,7 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { AddTaskComponent } from './components/add-task/add-task.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonComponent } from './components/button/button.component';
 import { FirestoreModule } from './firestore/firestore.module';
 import { RouterModule } from '@angular/router';
@@ -37,6 +37,7 @@ import { MenuComponent } from './components/menu/menu.component';
     MatCardModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
     FirestoreModule,
     RouterModule
   ],
