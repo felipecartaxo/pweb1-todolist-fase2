@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Tarefa } from '../../model/Tarefa';
 import { UsuarioService } from '../../services/usuario.service';
+import { MensagemSweetService } from '../../services/mensagem-sweet.service';  // Importe o serviço de mensagens
 
 @Component({
   selector: 'app-add-task',
@@ -16,9 +17,14 @@ export class AddTaskComponent {
   // Visualização do botão para adicionar uma nova tarefa
   mostrarAddTarefa: boolean = false;
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private mensagemService: MensagemSweetService  // Injetando o serviço de mensagens
+  ) {
     this.tarefaForm = this.fb.group({
       titulo: ['', Validators.required],
+      descricao: [''],
       categoria: ['', Validators.required]
     });
   }
@@ -44,6 +50,10 @@ export class AddTaskComponent {
 
     // Envia para o task-component a tarefa a ser cadastrada
     this.onAddTask.emit(novaTarefa);
+
+    // Exibe a mensagem de sucesso
+    this.mensagemService.sucesso('Tarefa adicionada com sucesso!');
+
     this.resetarFormulario();
   }
 

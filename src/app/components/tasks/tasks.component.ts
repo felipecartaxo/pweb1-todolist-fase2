@@ -107,9 +107,9 @@ export class TasksComponent implements OnInit {
       }
     } */
 
-    buscarTarefas() {
-      this.taskService.pesquisarPorFiltro(this.filtro, this.filtroCategoria).subscribe((dados: Tarefa[]) => {
-        this.tarefas = dados;
-      });
-    }
+  buscarTarefas() {
+    this.taskService.pesquisarPorFiltro(this.filtro, this.filtroCategoria).subscribe((dados: Tarefa[]) => {
+      this.tarefas = dados;
+    });
+  }
 }
