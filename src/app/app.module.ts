@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { MenuComponent } from './components/menu/menu.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MenuComponent } from './components/menu/menu.component';
     FormsModule,
     ReactiveFormsModule,
     FirestoreModule,
+    MatSnackBarModule,
     RouterModule
   ],
   providers: [

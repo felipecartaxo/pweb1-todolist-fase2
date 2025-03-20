@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Tarefa } from '../../model/Tarefa';
+import {MensagemSweetService} from '../../services/mensagem-sweet.service';
 
 @Component({
   selector: 'app-tasks',
@@ -17,7 +18,7 @@ export class TasksComponent implements OnInit {
   // Filtro de categoria
   filtroCategoria: string = '';
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private mensagemService: MensagemSweetService ) {}
 
   // Após o construtor, o ngOnInit será chamado e irá listar todas as tarefas
   ngOnInit() {
@@ -52,12 +53,20 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(tarefa: Tarefa) {
-    if (tarefa.id) {
-      this.taskService.deleteTask(tarefa.id).subscribe(() => {
-        this.carregarTarefas();
+    if (!tarefa.id) return;
+
+    this.mensagemService
+      .confirmacao('Tem certeza que deseja excluir esta tarefa?', 'Essa ação não pode ser desfeita!')
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.taskService.deleteTask(tarefa.id!).subscribe(() => {
+            this.carregarTarefas();
+            this.mensagemService.sucesso('Tarefa excluída com sucesso!');
+          });
+        }
       });
     }
-  }
+
 
    /* buscarTarefas() {
       if (this.filtro.trim()) {
